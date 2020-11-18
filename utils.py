@@ -80,10 +80,8 @@ def run_batch_inference(model, beta_set, text, style, tokenizer=None, time_steps
                 plt.show()
 
     x = tf.concat([x, pen_lifts], axis=-1)
-    if show_samples:
-        for i in range(bs):
-            print(tokenizer.decode(text[i]))
-            show(x[i], scale=1, name=path)
+    for i in range(bs):
+        show(x[i], scale=1, show_output = show_samples, name=path)
 
     return x.numpy()
     
