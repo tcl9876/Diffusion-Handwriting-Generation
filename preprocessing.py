@@ -6,6 +6,7 @@ import random
 import pickle
 import argparse
 import string
+from utils import Tokenizer
 
 '''
 Creates the online and offline dataset for training
@@ -38,9 +39,7 @@ def norms(x):
     return np.linalg.norm(x, axis=-1)
 
 def combine_strokes(x, n):
-    #consecutive stroke vectors whose dot product is closest
-    #to the product of their lengths are added together
-    
+    #consecutive stroke vectors who point in similar directions are summed
     #if the pen was picked up in either of the strokes,
     #we pick up the pen for the combined stroke
     s, s_neighbors = x[::2, :2], x[1::2, :2]
